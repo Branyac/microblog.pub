@@ -29,7 +29,7 @@ USER microblogpub
 WORKDIR /app
 RUN chown -R 1000:1000 ./
 COPY . ./
-RUN mkdir -d app/static/
+RUN mkdir -p app/static/
 VOLUME data/ app/static/
 EXPOSE 8000
 CMD ["./misc/docker_start.sh"]
