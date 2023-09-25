@@ -24,7 +24,6 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends libjpeg-dev libxslt1-dev libxml2-dev libxslt-dev
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
 WORKDIR /app
-RUN chown -R 1000:1000 ./
 COPY . ./
 RUN mkdir -p app/static/
 VOLUME data/ app/static/
