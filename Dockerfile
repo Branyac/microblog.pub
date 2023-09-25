@@ -22,10 +22,7 @@ RUN poetry install --only main
 FROM python-base as production
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends libjpeg-dev libxslt1-dev libxml2-dev libxslt-dev
-RUN groupadd --gid 1000 microblogpub \
-  && useradd --uid 1000 --gid microblogpub --shell /bin/bash microblogpub
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
-USER microblogpub
 WORKDIR /app
 RUN chown -R 1000:1000 ./
 COPY . ./
