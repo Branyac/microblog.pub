@@ -25,9 +25,10 @@ RUN apt-get install -y --no-install-recommends libjpeg-dev libxslt1-dev libxml2-
 RUN groupadd --gid 1000 microblogpub \
   && useradd --uid 1000 --gid microblogpub --shell /bin/bash microblogpub
 COPY --from=builder-base $PYSETUP_PATH $PYSETUP_PATH
-COPY . /app/
-RUN chown -R 1000:1000 /app
 USER microblogpub
 WORKDIR /app
+COPY . ./
+RUN mkdir data/ && mkdir -d app/static/
+VOLUME data/ app/static/
 EXPOSE 8000
 CMD ["./misc/docker_start.sh"]
